@@ -1,4 +1,5 @@
 import { ConnectBtn } from "@/components/connectButton";
+import Profile from "@/components/profile";
 import Image from "next/image";
 
 export default function Home() {
@@ -18,6 +19,8 @@ export default function Home() {
           priority
         />
       </div>
+
+      <Profile />
 
     </main>
   );
