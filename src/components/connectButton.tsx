@@ -7,9 +7,10 @@ import {
     useChainModal
 } from "@rainbow-me/rainbowkit";
 import { useAccount, useDisconnect } from "wagmi";
+import Button from "@mui/material/Button/Button";
 
 export const ConnectBtn = () => {
-    const { isConnecting, address, isConnected, chain } = useAccount();
+    const { isConnecting, isConnected, chain } = useAccount();
 
     const { openConnectModal } = useConnectModal();
     const { openAccountModal } = useAccountModal();
@@ -24,8 +25,12 @@ export const ConnectBtn = () => {
 
     if (!isConnected) {
         return (
-            <button
-                className="btn"
+            <Button
+                variant="contained"
+                color="primary"
+                component="a"
+                target="blank"
+                size="large"
                 onClick={async () => {
                     if (isConnected) {
                         disconnect();
@@ -35,15 +40,22 @@ export const ConnectBtn = () => {
                 disabled={isConnecting}
             >
                 {isConnecting ? 'Connecting...' : 'Connect your wallet'}
-            </button>
+            </Button>
         );
     }
 
     if (isConnected && !chain) {
         return (
-            <button className="btn" onClick={openChainModal}>
+            <Button
+                variant="contained"
+                color="primary"
+                component="a"
+                target="blank"
+                size="large"
+                onClick={openChainModal}
+            >
                 Wrong network
-            </button>
+            </Button>
         );
     }
 
@@ -55,9 +67,16 @@ export const ConnectBtn = () => {
             >
                 <p>Account</p>
             </div>
-            <button className="btn" onClick={openChainModal}>
+            <Button
+                variant="contained"
+                color="primary"
+                component="a"
+                target="blank"
+                size="large"
+                onClick={openChainModal}
+            >
                 Switch Networks
-            </button>
+            </Button>
         </div>
     );
 };
